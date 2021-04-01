@@ -6,20 +6,20 @@ import java.awt.*;
  * @author dmifed
  */
 public class ColorWithId{
-    private Color color;
+    private int RGBValue;
     private int id;
 
-    public ColorWithId(Color color, int id) {
-        this.color = color;
+    public ColorWithId(int RGBValue, int id) {
+        this.RGBValue = RGBValue;
         this.id = id;
     }
 
-    public Color getColor() {
-        return color;
+    public int getRGB() {
+        return RGBValue;
     }
 
-    public void setColor(Color color) {
-        this.color = color;
+    public void setRGB(int RGBValue) {
+        this.RGBValue = RGBValue;
     }
 
     public int getId() {

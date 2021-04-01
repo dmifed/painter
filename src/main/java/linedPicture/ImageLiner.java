@@ -1,8 +1,5 @@
 package linedPicture;
 
-import tests.BasicColors;
-import tests.Utils;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -128,9 +125,8 @@ public class ImageLiner {
 
 
     //for all pixels in commonTextList set text pixel color id
-    private void setColorIdToLinedImage(BufferedImage linedImage){
-        Color textColor = commonTextList.get(0).getColorWithId().getColor();
-        String text = "";
+    private void setColorIdToLinedImage(BufferedImage linedImage, Color textColor){
+        String text;
         Graphics graphics = linedImage.getGraphics();
         graphics.setColor(textColor);
         graphics.setFont(new Font("Arial", Font.PLAIN, 27));
@@ -182,7 +178,7 @@ public class ImageLiner {
         int channelsValue = (int) (255*(1-tone));
         Color color = new Color(channelsValue, channelsValue, channelsValue);
 
-        ColorWithId colorWithId = new ColorWithId(color, -1);
+        ColorWithId colorWithId = new ColorWithId(color.getRGB(), -1);
         for(Pixel p : pixels){
             p.setColorWithId(colorWithId);
         }

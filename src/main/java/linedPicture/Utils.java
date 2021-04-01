@@ -1,5 +1,6 @@
-package tests;
+package linedPicture;
 
+import linedPicture.BasicColors;
 import linedPicture.Pixel;
 
 import javax.imageio.IIOImage;
@@ -11,7 +12,6 @@ import javax.imageio.stream.FileImageOutputStream;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class Utils {
     public static void printColorTable(){
         String pathToColorTable = "src/main/resources/colorTable.jpg";
         File out = new File(pathToColorTable);
-        List<Color> basicColors = BasicColors.getBasicColors();
+        List<ColorWithId> basicColors = BasicColors.getBasicColors();
         int countCell = basicColors.size();
         int columns = 10;
         int rows = countCell/10;
@@ -41,11 +41,11 @@ public class Utils {
         int indexOfColor = 0;
         for(int row = 0; row < rows; row++){
             for(int column = 0; column < columns; column++){
-                Color c = null;
+                Color c;
                 if(indexOfColor >= countCell){
                     c = Color.WHITE;
                 }else {
-                    c = basicColors.get(indexOfColor);
+                    c = new Color(basicColors.get(indexOfColor).getRGB());
                 }
 
                 for(int y = row*cellSize; y < row*cellSize + cellSize; y++){
@@ -69,7 +69,9 @@ public class Utils {
         }
     }
 
-    public static double calcColorDistance(Color c1, Color c2){
+    public static double calcColorDistance(int RGBValue1, int RGBValue2){
+        Color c1 = new Color(RGBValue1);
+        Color c2 = new Color(RGBValue2);
         int red1 = c1.getRed();
         int green1 = c1.getGreen();
         int blue1 = c1.getBlue();

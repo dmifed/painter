@@ -1,13 +1,5 @@
 package linedPicture;
 
-import tests.BasicColors;
-import tests.Utils;
-
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.util.*;
-import java.util.List;
-
 /**
  * @author dmifed
  */

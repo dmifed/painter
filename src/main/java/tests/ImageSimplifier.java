@@ -2,13 +2,15 @@ package tests;
 
 import ij.IJ;
 import ij.ImagePlus;
+import linedPicture.BasicColors;
+import linedPicture.ColorWithId;
+import linedPicture.Utils;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLOutput;
 import java.util.*;
 import java.util.List;
 
@@ -47,7 +49,7 @@ public class ImageSimplifier {
 
     public void createSimplifiedImage(BufferedImage image, String outPath){
         HashMap<Color, Integer> usedColors = new HashMap<>();
-        List<Color> basicColors = BasicColors.getBasicColors();
+        List<ColorWithId> basicColors = BasicColors.getBasicColors();
         Utils.printColorTable();
         for(int x = 0; x < image.getWidth(); x++){
             for(int y = 0; y < image.getHeight(); y++){

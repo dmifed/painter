@@ -1,8 +1,5 @@
 package linedPicture;
 
-import tests.Utils;
-
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -38,22 +35,37 @@ public class PixelArea {
                 innerPixels.add(p);
             }
         }
+        boundCornersInit();
         pixelsBetweenText = -1;
         if(innerPixels.size() > 10_000) pixelsBetweenText = 200;
         if(innerPixels.size() > 100_000) pixelsBetweenText = 400;
+    }
 
+    private void boundCornersInit(){
+        int topCorner = Integer.MAX_VALUE;
+        int leftCorner = Integer.MAX_VALUE;
+        int bottomCorner = 0;
+        int rightCorner = 0;
+        for(Pixel p : borderPixels){
+            int row = p.getRow();
+            int col = p.getCol();
+            if(row < topCorner) topCorner = row;
+            if(row > bottomCorner) bottomCorner = row;
+            if(col < leftCorner) leftCorner = col;
+            if(col > rightCorner) rightCorner = col;
+        }
+        boundCorners = new BoundCorners(topCorner, bottomCorner, leftCorner, rightCorner);
 
     }
 
     //find nearest color from colorSet
     private ColorWithId findNearestNeighbourColor(){
-        Color current = colorWithId.getColor();
         ColorWithId nearestColor = null;
         double minDistance = Double.MAX_VALUE;
         double currentDist;
         for(ColorWithId c : neighbourColors){
             if(minDistance < 15) return nearestColor;
-            currentDist = Utils.calcColorDistance(c.getColor(), current);
+            currentDist = Utils.calcColorDistance(c.getRGB(), colorWithId.getRGB());
             if(currentDist < minDistance){
                 minDistance = currentDist;
                 nearestColor = c;

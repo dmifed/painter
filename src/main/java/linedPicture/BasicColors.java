@@ -1,6 +1,4 @@
-package tests;
-
-import linedPicture.ColorWithId;
+package linedPicture;
 
 import java.awt.*;
 import java.io.FileInputStream;
@@ -44,8 +42,8 @@ public class BasicColors {
         for(String colorName : treeSet){
             //System.out.println(colorName);
             String[] chanels = properties.getProperty(colorName).split(" ");
-            Color color = new Color(Integer.parseInt(chanels[0]), Integer.parseInt(chanels[1]), Integer.parseInt(chanels[2]));
-            ColorWithId colorWithId = new ColorWithId(color, id);
+            int RGBValue = new Color(Integer.parseInt(chanels[0]), Integer.parseInt(chanels[1]), Integer.parseInt(chanels[2])).getRGB();
+            ColorWithId colorWithId = new ColorWithId(RGBValue, id);
             basicColors.add(colorWithId);
             ++id;
             //System.out.println(colorName + " R:" + color.getRed() + " G:" + color.getGreen() + " B:" + color.getBlue());

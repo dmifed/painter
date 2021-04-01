@@ -84,6 +84,6 @@ public class Pixel {
     }
 
     public int getRGBValue(){
-        return colorWithId.getColor().getRGB();
+        return colorWithId.getRGB();
     }
 }

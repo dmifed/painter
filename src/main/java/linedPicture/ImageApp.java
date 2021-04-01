@@ -2,8 +2,6 @@ package linedPicture;
 
 import ij.IJ;
 import ij.ImagePlus;
-import tests.BasicColors;
-import tests.Utils;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -49,8 +47,8 @@ public class ImageApp {
             for(int y = 0; y < image.getHeight(); y++){
                 Color color = new Color(image.getRGB(x, y));
                 ColorWithId replaceColor = getNearestColor(color, basicColors);
-                image.setRGB(x, y, replaceColor.getColor().getRGB());
-                addColorToMap(replaceColor.getColor(), usedColors);
+                image.setRGB(x, y, replaceColor.getRGB().getRGB());
+                addColorToMap(replaceColor.getRGB(), usedColors);
                 colorTable[y][x] = replaceColor.getId();
             }
         }
