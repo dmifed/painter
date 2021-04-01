@@ -1,35 +1,27 @@
 package linedPicture;
 
-import java.awt.*;
-
 /**
  * @author dmifed
  */
 public class Pixel {
     private final int row;
     private final int col;
-    private int colorId;
-    private int countPixelAbove;
-    private int countPixelLeft;
-    private int countPixelLeftAbove;
-    private Color color;
+    private ColorWithId colorWithId;
     private boolean isUsed;
-    private boolean isMarked;
+    private boolean isSelected;
+    private boolean isBorder;
+    private int minDistanceRowToBorderPixel;
+    private int minDistanceColToBorderPixel;
 
-    public Pixel(int row, int col, int colorId) {
+    public Pixel(int row, int col, ColorWithId color) {
         this.row = row;
         this.col = col;
-        this.colorId = colorId;
-        countPixelAbove = 0;
-        countPixelLeft = 0;
-        countPixelLeftAbove = 0;
-        isUsed = false;
-        isMarked = false;
+        this.colorWithId = color;
     }
 
     @Override
     public String toString() {
-        return "y=" + row + " x=" + col + " id=" + colorId;
+        return "y=" + row + " x=" + col + " id=" + colorWithId.getId();
     }
 
     @Override
@@ -47,33 +39,51 @@ public class Pixel {
                 col == pixel.col;
     }
 
-    public boolean isRightBottomPixelForText(){
-        return countPixelAbove > 19 && countPixelLeft > 19 && countPixelLeftAbove > 19;
+    public int getRow() {
+        return row;
+    }
+    public int getCol() {
+        return col;
     }
 
-    public int getCountPixelAbove() {        return countPixelAbove;    }
-    public int getCountPixelLeft() {        return countPixelLeft;    }
-    public int getCountPixelLeftAbove() {        return countPixelLeftAbove;    }
-    public void setCountPixelAbove(int countPixelAbove) {        this.countPixelAbove = countPixelAbove;    }
-    public void setCountPixelLeft(int countPixelLeft) {        this.countPixelLeft = countPixelLeft;    }
-    public void setCountPixelLeftAbove(int countPixelLeftAbove) {        this.countPixelLeftAbove = countPixelLeftAbove;    }
-
-    public void setUsed(boolean used) {        isUsed = used;    }
-    public boolean isUsed() {        return isUsed;    }
-
-    public int getRow() {        return row;    }
-    public int getCol() {        return col;    }
-
-    public void setColor(Color color) {        this.color = color;    }
-    public Color getColor() {        return color;    }
-
-    public int getColorId() {
-        return colorId;
+    public ColorWithId getColorWithId() {
+        return colorWithId;
     }
-    public void setColorId(int colorId) {
-        this.colorId = colorId;
+    public void setColorWithId(ColorWithId colorWithId) {
+        this.colorWithId = colorWithId;
+    }
+    public boolean isUsed() {
+        return isUsed;
+    }
+    public void setUsed(boolean used) {
+        isUsed = used;
+    }
+    public boolean isSelected() {
+        return isSelected;
+    }
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
+    public boolean isBorder() {
+        return isBorder;
+    }
+    public void setBorder(boolean border) {
+        isBorder = border;
     }
 
-    public boolean isMarked() {        return isMarked;    }
-    public void setMarked(boolean marked) {        isMarked = marked;    }
+    public int getMinDistanceRowToBorderPixel() {        return minDistanceRowToBorderPixel;
+    }
+    public void setMinDistanceRowToBorderPixel(int minDistanceRowToBorderPixel) {
+        this.minDistanceRowToBorderPixel = minDistanceRowToBorderPixel;
+    }
+    public int getMinDistanceColToBorderPixel() {
+        return minDistanceColToBorderPixel;
+    }
+    public void setMinDistanceColToBorderPixel(int minDistanceColToBorderPixel) {
+        this.minDistanceColToBorderPixel = minDistanceColToBorderPixel;
+    }
+
+    public int getRGBValue(){
+        return colorWithId.getColor().getRGB();
+    }
 }
